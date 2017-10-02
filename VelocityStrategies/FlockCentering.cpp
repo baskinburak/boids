@@ -22,5 +22,5 @@ IVelStrat::Suggestion FlockCentering::suggest(BoidStatus& my_status, map<int, Bo
   if(cnt != 0)
     suggestion = suggestion/cnt;
 
-  return IVelStrat::Suggestion(normalise(suggestion), angsugg, 1);
+  return IVelStrat::Suggestion(normalise(suggestion), angsugg, norm(suggestion));
 }

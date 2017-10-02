@@ -1,4 +1,6 @@
 #include "VelocityMatching.h"
+#include <algorithm>
+using namespace std;
 
 VelocityMatching::VelocityMatching(double imp, double nt) : IVelStrat(imp, nt) {
   
@@ -24,5 +26,9 @@ IVelStrat::Suggestion VelocityMatching::suggest(BoidStatus& my_status, map<int, 
   if(cnt != 0)
     suggestion = suggestion/cnt;
 
-  return IVelStrat::Suggestion(suggestion, angsugg, 1);
+  Col<double>& myvel = my_status.get_lin_velocity();
+
+  double imp = abs(norm(suggestion)-norm(myvel)) * (norm(cross(suggestion, myvel)) / (norm(myvel) * norm(suggestion)));
+
+  return IVelStrat::Suggestion(suggestion, angsugg, imp);
 }

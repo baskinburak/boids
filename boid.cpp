@@ -89,8 +89,7 @@ int main(int argc, char** argv) {
     }
 
 
-    lin_vel = normalise(lin_vel);
-
+   
 
     // update velocity
     my_status.update_velocity(lin_vel, ang_vel);
